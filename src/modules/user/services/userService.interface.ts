@@ -1,3 +1,3 @@
-export interface IUserService{
-    getRandomTest(): Promise<any>;
+export interface IUserService {
+  getRandomTest(): Promise<any>;
 }

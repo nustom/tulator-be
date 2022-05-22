@@ -9,6 +9,3 @@ export class User extends Base {
   @Column({ length: 250, name: "last_name", nullable: true })
   lastName!: string;
 }
-
-
-

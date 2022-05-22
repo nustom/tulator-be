@@ -5,7 +5,7 @@ import { connectToDatabase } from '../config/db';
 import baseRouter from '../modules/baseRouter'
 
 class Server implements ServerInterface {// eslint-disable-line
-  constructor(){
+  constructor() {
     connectToDatabase()
   }
 

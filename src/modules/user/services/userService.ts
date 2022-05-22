@@ -7,23 +7,23 @@ import { logger } from '../../../helpers/logger'
 
 class UserService implements IUserService {// eslint-disable-line
 
-    // private manager: EntityManager;
-    // constructor() {
-    //     this.manager = getManager();
-    // }
-    
-    async getRandomTest(): Promise<any> {
-        try {
-            // const user = new User();
-            // user.firstName = "Test"
-            // this.manager.save(user);
-            logger.info("success")
-            return "it works";
-        } catch (error) {
-            logger.error(error);
-            return error;
-        }
+  // private manager: EntityManager;
+  // constructor() {
+  //     this.manager = getManager();
+  // }
+
+  async getRandomTest(): Promise<any> {
+    try {
+      // const user = new User();
+      // user.firstName = "Test"
+      // this.manager.save(user);
+      logger.info("success")
+      return "it works";
+    } catch (error) {
+      logger.error(error);
+      return error;
     }
+  }
 }
 
 export default new UserService();
