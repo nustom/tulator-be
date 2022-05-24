@@ -1,16 +1,20 @@
 import { Request, Response, Router } from 'express';
 import { IRouter } from '../router.interface';
 import MessageRepository from './repositories/messageRepository';
+import { transformGetAllResponse } from './messageHelper';
 
 const router = Router();
-
 class MessageRouter implements IRouter {
   get routes() {
     router.get('/', async (_req: Request, res: Response) => {
       try {
         const messageRepo = new MessageRepository();
         const messages = await messageRepo.getAll();
-        return res.status(200).json({ data: messages });
+
+        console.log('MMMMMMMMM', messages);
+
+        const result = transformGetAllResponse(messages);
+        return res.status(200).json({ data: result });
       } catch (err) {
         throw err;
       }

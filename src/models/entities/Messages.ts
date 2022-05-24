@@ -1,4 +1,4 @@
-import { BeforeInsert, Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, Tree, TreeChildren, TreeParent } from 'typeorm';
 import { Base } from '../Base';
 import {
   Validate,
@@ -6,23 +6,26 @@ import {
   ValidatorConstraint, ValidatorConstraintInterface, ValidationArguments
 } from 'class-validator';
 
+const REX_OPERATOR_AND_NUMBER = /^[\+|\-|\*|\/]\d+$/;
+const REX_NUMBER_ONLY = /^\d+$/;
 @ValidatorConstraint({ name: 'MessageText', async: false })
 export class MessageText implements ValidatorConstraintInterface {
-  validate(text: string, args: ValidationArguments) {
+  validate(content: string, args: ValidationArguments) {
     const { object } = args;
     // @ts-ignore
-    if (object.parent_id) {
-
+    if (object?.parent) {
+      return REX_OPERATOR_AND_NUMBER.test(content);
     }
-    return text.length > 1 && text.length < 10;
+    return REX_NUMBER_ONLY.test(content);
   }
 
-  defaultMessage(args: ValidationArguments) {
-    return 'Text ($value) is too short or too long!';
+  defaultMessage() {
+    return 'Content invalid!';
   }
 }
 
 @Entity()
+@Tree("closure-table")
 export class Message extends Base {
   @Column({ nullable: false })
   author: string;
@@ -31,16 +34,16 @@ export class Message extends Base {
   @Validate(MessageText)
   content: string;
 
-  @OneToOne(() => Message, message => message.children, { nullable: true })
-  @JoinColumn(({ name: 'parent_id' }))
+  @TreeParent()
   parent: Message;
 
-  @OneToOne(() => Message, message => message.parent)
-  children: Message;
+  @TreeChildren()
+  children: Message[];
 
   @BeforeInsert()
   async validate() {
     const errors = await classValidate(this);
-    console.log('>>>>>>>>>>>>>>>>>.', errors)
+    console.log('Validation: ', errors);
+    return { errors };
   }
 }
