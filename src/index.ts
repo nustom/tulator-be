@@ -1,6 +1,6 @@
 import { Environment } from './config/environment';
-import server from './server/app'
-import { logger } from './helpers/logger'
+import server from './server/app';
+import { logger } from './helpers/logger';
 Environment.setup();
 import 'reflect-metadata';
 

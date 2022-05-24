@@ -2,8 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { ServerInterface } from './app.interface';
 import { connectToDatabase } from '../config/db';
-import baseRouter from '../modules/baseRouter'
-
+import baseRouter from '../modules/baseRouter';
 class Server implements ServerInterface {// eslint-disable-line
   constructor() {
     connectToDatabase()
@@ -13,12 +12,13 @@ class Server implements ServerInterface {// eslint-disable-line
     const app = express();
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
+    app.use(cors());
     app.use('/api/v1', baseRouter.routes);//setting up base route
     // define a route handler for the default home page
     app.get("/", (req, res) => {
       res.send("Welcome to express-create application! ");
     });
-    app.use(cors());
+
     return app;
   }
 }

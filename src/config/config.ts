@@ -24,6 +24,6 @@ export const config: ConfigInterface = {
   DB_PORT: process.env.DB_PORT
     ? Number(process.env.DB_PORT)
     : 3306,
-  TYPEORM_CONNECTION: 'mysql',
+  TYPEORM_CONNECTION: 'postgres',
   TYPEORM_DEBUG_MODE: process.env.TYPEORM_DEBUG_MODE ? JSON.parse(process.env.TYPEORM_DEBUG_MODE) : false
 };
