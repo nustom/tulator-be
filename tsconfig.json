@@ -9,12 +9,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "public",
     "baseUrl": "."
   },
   "include": [
-    "src",
-    "test"
+    "src"
   ],
   "exclude": [
     "node_modules"

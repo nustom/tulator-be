@@ -2,11 +2,11 @@
   "name": "tweetulator",
   "version": "0.0.0",
   "scripts": {
-    "build": "tsc --build --clean && tsc",
+    "build": "tsc --outDir ./api && cp -R node_modules ./api/ && cp package.json ./api/",
     "lint": "eslint src/**/*.ts",
     "start": "yarn lint && yarn build && yarn dev",
     "test": "yarn build && ava",
-    "dev": "node ./dist/src/index.js"
+    "dev": "node ./public/src/index.js"
   },
   "dependencies": {
     "class-validator": "^0.13.2",

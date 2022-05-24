@@ -18,4 +18,4 @@ async function startServer(): Promise<Application> {
   return app;
 }
 
-startServer();
+export default startServer();

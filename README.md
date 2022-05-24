@@ -21,4 +21,5 @@ docker-compose up
 - Handle integers only
 
 ## Deployment
-- Docker - AWS EC instance
+- Vercel Serverless
+- AWS RDS Database
