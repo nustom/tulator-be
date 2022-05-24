@@ -21,4 +21,4 @@ docker-compose up
 - Handle integers only
 
 ## Deployment
-- Docker - AWS instance
+- Docker - AWS EC instance
