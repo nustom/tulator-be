@@ -1,4 +1,4 @@
-import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, Tree, TreeChildren, TreeParent } from 'typeorm';
+import { BeforeInsert, Column, Entity, Tree, TreeChildren, TreeParent } from 'typeorm';
 import { Base } from '../Base';
 import {
   Validate,

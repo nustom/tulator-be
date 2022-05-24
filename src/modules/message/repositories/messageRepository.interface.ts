@@ -1,4 +1,4 @@
-import { Message } from 'src/models/entities/Messages';
+import { Message } from '../../../models/entities/Messages';
 import { ICreateMessageBody } from '../interfaces';
 
 export interface IMessageRepository {

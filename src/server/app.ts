@@ -15,7 +15,7 @@ class Server implements ServerInterface {// eslint-disable-line
     app.use(cors());
     app.use('/api/v1', baseRouter.routes);//setting up base route
     // define a route handler for the default home page
-    app.get("/", (req, res) => {
+    app.get("/", (_req, res) => {
       res.send("Welcome to express-create application! ");
     });
 

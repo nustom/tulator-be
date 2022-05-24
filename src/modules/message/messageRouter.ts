@@ -1,35 +1,38 @@
 import { Request, Response, Router } from 'express';
+import { Message } from '../../models/entities/Messages';
 import { IRouter } from '../router.interface';
+import { ICreateMessageBody } from './interfaces';
 import MessageRepository from './repositories/messageRepository';
-import { transformGetAllResponse } from './messageHelper';
 
 const router = Router();
 class MessageRouter implements IRouter {
   get routes() {
-    router.get('/', async (_req: Request, res: Response) => {
+    router.get('/', async (_req: Request, res: Response): Promise<Response> => {
       try {
-        const messageRepo = new MessageRepository();
-        const messages = await messageRepo.getAll();
+        const messageRepo: MessageRepository = new MessageRepository();
+        const messages: Message[] = await messageRepo.getAll();
 
-        console.log('MMMMMMMMM', messages);
-
-        const result = transformGetAllResponse(messages);
-        return res.status(200).json({ data: result });
+        return res.status(200).json({ data: messages });
       } catch (err) {
-        throw err;
+        return res.status(400).json({ error: err.message });
       }
     });
 
-    router.post('/', async (req: Request, res: Response) => {
+    router.post('/', async (req: Request, res: Response): Promise<Response> => {
       try {
         const { parentId, author, content } = req.body;
-        const messageRepo = new MessageRepository();
+        const messageData: ICreateMessageBody = {
+          parentId,
+          author,
+          content
+        }
 
-        const message = await messageRepo.create({ parentId, author, content });
+        const messageRepo: MessageRepository = new MessageRepository();
+        const message: Message = await messageRepo.create(messageData);
 
-        return res.status(200).json({ message });
+        return res.status(200).json({ data: message });
       } catch (err) {
-        throw err;
+        return res.status(400).json({ error: err.message });
       }
     });
 
