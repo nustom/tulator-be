@@ -1,7 +1,7 @@
 ## Tom Test Tweetulator
 
 ### Demo
-[54.255.149.136:5000](http://54.255.149.136:5000)
+[https://tulator-be-nustom-nus.vercel.app/api/](https://tulator-be-nustom-nus.vercel.app/api/)
 
 ### Development
 ```
