@@ -6,7 +6,7 @@
     "lint": "eslint src/**/*.ts",
     "start": "yarn lint && yarn build && yarn dev",
     "test": "yarn build && ava",
-    "dev": "node ./public/src/index.js"
+    "dev": "node ./dist/src/index.js"
   },
   "dependencies": {
     "class-validator": "^0.13.2",
