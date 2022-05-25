@@ -5,7 +5,7 @@ import messageRouter from './message/messageRouter';
 const router = Router();
 
 class BaseRouter implements IRouter {
-  get routes() {
+  get routes(): Router {
     router.use('/messages', messageRouter.routes);
     return router;
   }

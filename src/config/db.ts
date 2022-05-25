@@ -1,8 +1,8 @@
-import { createConnection } from 'typeorm';
+import { Connection, createConnection } from 'typeorm';
 import { config } from './config';
 import { logger } from '../helpers/logger';
 
-export async function connectToDatabase() {
+export async function connectToDatabase(): Promise<Connection> {
   try {
     const connections = await createConnection({
       type: config.TYPEORM_CONNECTION,
